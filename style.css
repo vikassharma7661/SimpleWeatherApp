@@ -1,0 +1,309 @@
+v/* ============================================
+   1. RESET — Start with a clean slate
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   2. PAGE — Center the app on the screen
+   ============================================ */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+/* ============================================
+   3. MAIN CARD — The weather app container
+   ============================================ */
+.weather-app {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   4. HEADER — App title
+   ============================================ */
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+/* Hide label visually but keep it for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ============================================
+   5. SEARCH — Input and button
+   ============================================ */
+.search-section {
+  margin-bottom: 24px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+}
+
+#city-input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #1f2937;
+  background-color: #f8fafc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#city-input::placeholder {
+  color: #94a3b8;
+}
+
+#city-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  background-color: #ffffff;
+}
+
+#search-btn {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+#search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+#search-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   6. WEATHER INFO — Results display area
+   ============================================ */
+.weather-info {
+  padding: 28px 20px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f0f4ff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+
+.weather-info.is-loading {
+  opacity: 0.7;
+}
+
+.city-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.temperature {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.weather-condition {
+  font-size: 1.125rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  text-transform: capitalize;
+}
+
+/* ============================================
+   7. WEATHER DETAILS — Humidity & wind
+   ============================================ */
+.weather-details {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.detail-item {
+  flex: 1;
+  max-width: 160px;
+  padding: 16px 12px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.detail-item dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.detail-item dd {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ============================================
+   8. 10-DAY FORECAST
+   ============================================ */
+.forecast-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.forecast-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.forecast-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+
+.forecast-day {
+  flex: 0 0 72px;
+  scroll-snap-align: start;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.forecast-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.forecast-icon {
+  display: block;
+  font-size: 1.75rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.forecast-label {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.forecast-temp {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.forecast-temp span {
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ============================================
+   9. MOBILE — Smaller screens
+   ============================================ */
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .weather-app {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+
+  /* Stack search input and button vertically */
+  .search-box {
+    flex-direction: column;
+  }
+
+  #search-btn {
+    width: 100%;
+  }
+
+  .temperature {
+    font-size: 2.75rem;
+  }
+
+  .weather-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail-item {
+    width: 100%;
+    max-width: none;
+  }
+}

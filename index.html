@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="weather-app">
+    <header class="app-header">
+      <h1>Weather App</h1>
+    </header>
+
+    <section class="search-section" aria-label="City search">
+      <label for="city-input" class="visually-hidden">City name</label>
+      <div class="search-box">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Enter city name"
+        >
+        <button type="button" id="search-btn">Search</button>
+      </div>
+    </section>
+
+    <section id="weather-info" class="weather-info" aria-live="polite">
+      <p id="error-message" class="error-message" hidden></p>
+
+      <p id="city-name" class="city-name">Search for a city</p>
+
+      <p id="temperature" class="temperature">--°C</p>
+
+      <p id="weather-condition" class="weather-condition">--</p>
+
+      <dl class="weather-details">
+        <div class="detail-item">
+          <dt>Humidity</dt>
+          <dd id="humidity">--%</dd>
+        </div>
+        <div class="detail-item">
+          <dt>Wind Speed</dt>
+          <dd id="wind-speed">-- m/s</dd>
+        </div>
+      </dl>
+
+      <section class="forecast-section" id="forecast-section" hidden>
+        <h2 class="forecast-title">10-Day Forecast</h2>
+        <div class="forecast-list" id="forecast-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
